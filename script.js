@@ -466,8 +466,8 @@ backgroundVideo.addEventListener('ended', () => {
 });
 
 document.addEventListener('keydown', (e) => { if (e.code === 'Space') handleAction(); });
-canvas.addEventListener('mousedown', handleAction);
-canvas.addEventListener('touchstart', (e) => { e.preventDefault(); handleAction(); });
+document.addEventListener('mousedown', handleAction);
+document.addEventListener('touchstart', (e) => { e.preventDefault(); handleAction(); });
 
 // --- INÍCIO DO JOGO ---
 initParticlePool();
