@@ -22,7 +22,7 @@ shurikenImage.src = 'images/shuriken.png';
 
 // --- CONSTANTES ---
 const GRAVITY = 0.45;
-const JUMP_STRENGTH = -12;
+const JUMP_STRENGTH = -11;
 const POINTS_PER_DODGE = 2;
 const ANIMATION_SPEED = 18;
 const INITIAL_GAME_SPEED = 8;
