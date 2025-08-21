@@ -132,3 +132,20 @@ canvas {
     font-style: italic;
     color: #aaa;
 }
+#game-container {
+    /* Mantém a proporção do jogo (800x400 = 2:1) */
+    aspect-ratio: 2 / 1;
+    /* Faz o container ocupar a largura máxima, mas não mais que a tela */
+    width: 100%;
+    max-width: 800px; /* Limite máximo para telas grandes */
+    border: 3px solid #e0e0e0;
+    box-shadow: 0 0 15px rgba(224, 224, 224, 0.5);
+}
+
+canvas {
+    /* Faz o canvas preencher 100% do container */
+    width: 100%;
+    height: 100%;
+    display: block;
+    transform: rotate(180deg);
+}
