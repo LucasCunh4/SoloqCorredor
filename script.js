@@ -28,7 +28,7 @@ const JUMP_STRENGTH = -11;
 const POINTS_PER_DODGE = 2;
 const ANIMATION_SPEED = 18;
 const INITIAL_GAME_SPEED = 8;
-const GAME_SPEED_INCREASE = 0.05;
+const GAME_SPEED_INCREASE = 0.08;
 const MAX_PARTICLES = 150;
 
 // --- VARIÁVEIS DE ESTADO ---
@@ -351,7 +351,7 @@ function handleCollisions() {
 }
 
 function updateGameLogic(deltaTime) {
-    const scoreMultiplier = 2;
+    const scoreMultiplier = 1.7;
     score += gameSpeed * scoreMultiplier * deltaTime;
     gameSpeed += GAME_SPEED_INCREASE * deltaTime;
     scoreElement.textContent = Math.floor(score);
