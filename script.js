@@ -78,7 +78,7 @@ function hexToRgbInt(hex) {
 }
 
 function getCycleColors(score) {
-    const cycleLength = 200; // Duração de cada uma das 12 fases
+    const cycleLength = 500; // Duração de cada uma das 12 fases
     const progress = (score % cycleLength) / cycleLength;
     // Agora o ciclo se repete a cada 12 fases
     const cycleIndex = Math.floor(score / cycleLength);
@@ -357,8 +357,8 @@ function updateGameLogic(deltaTime) {
     scoreElement.textContent = Math.floor(score);
     frameCount++;
 
-    if (Math.floor(score / 500) > victoryMilestone) {
-        victoryMilestone = Math.floor(score / 500);
+    if (Math.floor(score / 1000) > victoryMilestone) {
+        victoryMilestone = Math.floor(score / 1000);
         playVictorySequence();
     }
 }
