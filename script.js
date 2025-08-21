@@ -48,10 +48,18 @@ highscoreDisplay.textContent = `Recorde: ${highscore}`;
 
 // --- CICLO DIA/NOITE ---
 const colors = {
-    day: { sky1: '#87CEEB', sky2: '#ADD8E6', ground: '#228B22', sun: '#FFD700' },
-    sunset: { sky1: '#FF7F50', sky2: '#FFA07A', ground: '#2F4F4F', sun: '#FF4500' },
-    night: { sky1: '#191970', sky2: '#483D8B', ground: '#006400', sun: '#F0E68C' },
-    sunrise: { sky1: '#FFB6C1', sky2: '#FF69B4', ground: '#4682B4', sun: '#FFD700' },
+    day:          { sky1: '#87CEEB', ground: '#228B22', sun: '#FFD700' },
+    afternoon:    { sky1: '#5F9EA0', ground: '#2E8B57', sun: '#FFD700' }, // NOVO! Tarde
+    dusk:         { sky1: '#FFA07A', ground: '#2F4F4F', sun: '#FFD700' },
+    sunset:       { sky1: '#FF4500', ground: '#2F4F4F', sun: '#FF4500' },
+    twilight:     { sky1: '#483D8B', ground: '#006400', sun: '#F0E68C' },
+    late_night:   { sky1: '#2c2a65', ground: '#004d00', sun: '#F0E68C' }, // NOVO! Anoitecer Profundo
+    night:        { sky1: '#191970', ground: '#003300', sun: '#F0E68C' },
+    deep_dawn:    { sky1: '#2c2a65', ground: '#2c3e50', sun: '#F0E68C' }, // NOVO! Madrugada Profunda
+    predawn:      { sky1: '#483D8B', ground: '#4682B4', sun: '#F0E68C' },
+    sunrise:      { sky1: '#FF69B4', ground: '#4682B4', sun: '#FFD700' },
+    morning:      { sky1: '#ADD8E6', ground: '#228B22', sun: '#FFD700' },
+    late_morning: { sky1: '#A1DAF0', ground: '#228B22', sun: '#FFD700' }, // NOVO! Fim da Manhã
 };
 
 function lerpColor(a, b, amount) {
@@ -68,16 +76,26 @@ function hexToRgbInt(hex) {
 }
 
 function getCycleColors(score) {
-    const cycleLength = 200;
+    const cycleLength = 200; // Duração de cada uma das 12 fases
     const progress = (score % cycleLength) / cycleLength;
+    // Agora o ciclo se repete a cada 12 fases
     const cycleIndex = Math.floor(score / cycleLength);
 
     let fromColors, toColors;
-    if (cycleIndex % 4 === 0) { fromColors = colors.day; toColors = colors.sunset; }
-    else if (cycleIndex % 4 === 1) { fromColors = colors.sunset; toColors = colors.night; }
-    else if (cycleIndex % 4 === 2) { fromColors = colors.night; toColors = colors.sunrise; }
-    else { fromColors = colors.sunrise; toColors = colors.day; }
+    if (cycleIndex % 12 === 0) { fromColors = colors.day; toColors = colors.afternoon; }
+    else if (cycleIndex % 12 === 1) { fromColors = colors.afternoon; toColors = colors.dusk; }
+    else if (cycleIndex % 12 === 2) { fromColors = colors.dusk; toColors = colors.sunset; }
+    else if (cycleIndex % 12 === 3) { fromColors = colors.sunset; toColors = colors.twilight; }
+    else if (cycleIndex % 12 === 4) { fromColors = colors.twilight; toColors = colors.late_night; }
+    else if (cycleIndex % 12 === 5) { fromColors = colors.late_night; toColors = colors.night; }
+    else if (cycleIndex % 12 === 6) { fromColors = colors.night; toColors = colors.deep_dawn; }
+    else if (cycleIndex % 12 === 7) { fromColors = colors.deep_dawn; toColors = colors.predawn; }
+    else if (cycleIndex % 12 === 8) { fromColors = colors.predawn; toColors = colors.sunrise; }
+    else if (cycleIndex % 12 === 9) { fromColors = colors.sunrise; toColors = colors.morning; }
+    else if (cycleIndex % 12 === 10) { fromColors = colors.morning; toColors = colors.late_morning; }
+    else { fromColors = colors.late_morning; toColors = colors.day; }
 
+    // O resto da função que calcula as cores continua exatamente igual
     const fromSky1 = hexToRgbInt(fromColors.sky1);
     const toSky1 = hexToRgbInt(toColors.sky1);
     const fromGround = hexToRgbInt(fromColors.ground);
@@ -91,7 +109,6 @@ function getCycleColors(score) {
         sun: lerpColor(fromSun, toSun, progress),
     };
 }
-
 // --- DESENHO DO CENÁRIO ---
 function drawScenery() {
     const currentColors = getCycleColors(score);
