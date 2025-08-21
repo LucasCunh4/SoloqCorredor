@@ -351,7 +351,8 @@ function handleCollisions() {
 }
 
 function updateGameLogic(deltaTime) {
-    score += 1 * deltaTime;
+    const scoreMultiplier = 2;
+    score += gameSpeed * scoreMultiplier * deltaTime;
     gameSpeed += GAME_SPEED_INCREASE * deltaTime;
     scoreElement.textContent = Math.floor(score);
     frameCount++;
