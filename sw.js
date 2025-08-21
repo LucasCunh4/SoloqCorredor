@@ -9,12 +9,12 @@ const urlsToCache = [
     // Imagens (não esqueça de criar os ícones!)
     'images/rosto.png',
     'images/shuriken.png',
-    'images/icon-192.png',
-    'images/icon-512.png',
+    'images/foto-inicio.png',
     // Sons
     'sons/pulo.mp3',
     'sons/aterrissagem.mp3',
     'sons/gameover.mp3',
+    'sons/vitoria.mp3
     //---vídeo---
     'videos/vitoria.mp4',
     //---ícones---
