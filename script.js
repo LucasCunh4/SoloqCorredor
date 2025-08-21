@@ -1,6 +1,8 @@
 // --- ELEMENTOS DO JOGO ---
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
+canvas.width = 800;
+canvas.height = 400
 const scoreElement = document.getElementById('score');
 const startScreen = document.getElementById('start-screen');
 const startButton = document.getElementById('start-button');
